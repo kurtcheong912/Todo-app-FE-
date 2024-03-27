@@ -1,5 +1,5 @@
 export class Task {
-    public isDeleted;
+
     public created;
     public update;
 
@@ -8,5 +8,6 @@ export class Task {
         public title: string,
         public description: string,
         public category: string,
-        public dueDate: String) { }
+        public dueDate: String,
+     ) { }
 }

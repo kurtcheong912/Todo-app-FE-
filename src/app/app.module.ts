@@ -14,6 +14,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { TaskItemComponent } from './tasks/task-list/task-item/task-item.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync(), provideNativeDateAdapter()

@@ -1,22 +1,27 @@
 import { Injectable } from "@angular/core";
 import { Task } from "../tasks/task.model";
+import { HttpClient } from "@angular/common/http";
 
 const LOCALHOST: string = 'http://localhost:8080';
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-    //  dateTime = new Date()
-    // private tasks: Task[] = [
-    //     new Task(1, "title1", "description1",this.dateTime),
-    //     new Task(2, "title2", "description2",this.dateTime),
-    //     new Task(3, "title3", "description3",this.dateTime),
-    //     new Task(4, "title4", "description4",this.dateTime),
-    //   ];
 
-    //   fetchTasks(){
-    //     return this.tasks;
-    //   }
+    constructor(private http: HttpClient) { }
 
-    //   storeTask(task: Task){
-    //     this.tasks.push(task);
-    //   }
+    fetchTasks() {
+        return this.http
+            .get<Task[]>(LOCALHOST + '/tasks')
+    }
+
+    storeTask(task: Task) {
+        return this.http.post<Task>(LOCALHOST + '/task', task);
+    }
+
+    putTask(task: Task) {
+        return this.http.put(LOCALHOST + '/task/' + task.id, task);
+    }
+
+    removeTask(id: number) {
+        return this.http.delete(LOCALHOST + '/task/' + id);
+    }
 }

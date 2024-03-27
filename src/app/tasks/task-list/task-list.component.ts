@@ -12,11 +12,11 @@ export class TaskListComponent {
   tasks: Task[];
 
   private isTasksChanged: Subscription;
-  
+
   constructor(private taskService: TaskService) {
   }
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
+    this.taskService.setTasks();
     this.isTasksChanged = this.taskService.tasksChanged.subscribe((myTasks: Task[]) => {
       this.tasks = myTasks;
     });

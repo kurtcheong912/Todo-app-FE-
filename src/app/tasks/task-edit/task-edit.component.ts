@@ -62,7 +62,9 @@ export class TaskEditComponent implements OnInit {
     let dueDate = this.taskForm.value.dueDate;
     dueDate = formatDate(dueDate, 'yyyy-MM-dd', 'en');
     let dueTime = this.taskForm.value.dueTime;
-    let newTask = new Task(0, this.taskForm.value.title, this.taskForm.value.description,this.taskForm.value.category, dueDate + "T" + dueTime);
+    let newTask = new Task(null, this.taskForm.value.title, this.taskForm.value.description,this.taskForm.value.category, dueDate + "T" + dueTime);
+    console.log(newTask);
+    
     if (this.editMode) {
       this.taskService.updateTask(this.index, newTask);
 
