@@ -1,0 +1,11 @@
+<mat-grid-list  cols="2" >
+    <mat-grid-tile >
+        <div class="scrollable-content">
+        <app-task-list></app-task-list>
+        </div>
+        <button mat-raised-button color="primary" (click)="addTask()">Add task</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <router-outlet></router-outlet>
+    </mat-grid-tile>
+</mat-grid-list>

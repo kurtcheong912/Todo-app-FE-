@@ -1,10 +1,17 @@
 import { RouterModule, Routes } from "@angular/router";
-import { FeatureTestComponent } from "./feature-test/feature-test.component";
 import { NgModule } from "@angular/core";
+import { TasksComponent } from "./tasks/tasks.component";
+import { TaskEditComponent } from "./tasks/task-edit/task-edit.component";
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/test', pathMatch: 'full' },
-    { path: 'test', component: FeatureTestComponent },
+    { path: '', redirectTo: '/task', pathMatch: 'full' },
+
+    {
+        path: 'task', component: TasksComponent, children: [
+            { path: ':data/edit', component: TaskEditComponent },
+            { path: 'new', component: TaskEditComponent },
+        ]
+    },
 ];
 
 @NgModule({

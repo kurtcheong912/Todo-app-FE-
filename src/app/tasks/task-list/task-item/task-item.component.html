@@ -1,0 +1,15 @@
+<mat-card class="scrollable-content" style="margin-bottom: 20px; width: 400px;height: 100%; overflow-y: auto;">
+    <div  (click)="onEditTask(index)"> <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>Task title:{{ task.title }}</mat-card-title>
+                <mat-card-subtitle>Task Description: {{ task.description }}</mat-card-subtitle>
+                 <mat-card-subtitle>Category: {{ task.category }}</mat-card-subtitle>
+                <mat-card-subtitle>Due Date: {{ task.dueDate }}</mat-card-subtitle>
+    
+            </mat-card-title-group>
+        </mat-card-header>
+    </div>
+    <mat-card-actions align="end">
+        <button mat-button type="button"(click)="openDeleteDialog()" >Delete</button>
+    </mat-card-actions>
+</mat-card>

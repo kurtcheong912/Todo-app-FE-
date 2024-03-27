@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { PopUpComponent } from './pop-up/pop-up.component';
 /////
 @NgModule({
 
@@ -24,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatSelectModule,
         MatOptionModule,
         MatToolbarModule,
+        NgxMaterialTimepickerModule,
     ],
     exports: [
         MatFormFieldModule,
@@ -37,7 +41,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatSelectModule,
         MatOptionModule,
         MatToolbarModule,
-      ]
+        MatDatepickerModule,
+        NgxMaterialTimepickerModule,
+      ],
+    declarations: [
+      PopUpComponent
+    ]
 
 })
 export class MaterialModule { }

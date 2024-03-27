@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from './shared/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  onServerAdded(serverData:{serverName:string,serverContent:string}) {
-    console.log("helooo this is from feature test");
-  }
+
+ 
+
+
 }
