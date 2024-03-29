@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../../../shared/pop-up/pop-up.component';
+import { TaskEditComponent } from '../../task-edit/task-edit.component';
 
 @Component({
   selector: 'app-task-item',
@@ -31,6 +32,11 @@ export class TaskItemComponent {
     });
   }
   onEditTask(index: number) {
-    this.router.navigate([index, 'edit'], { relativeTo: this.route });
+    const dialogRef = this.dialogRef.open(TaskEditComponent, {
+      data: {
+        index: index
+      }
+    });
+  
   }
 }

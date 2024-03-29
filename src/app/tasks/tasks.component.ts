@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 @Component({
   selector: 'app-tasks',
@@ -7,10 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private dialogRef: MatDialog) {
   }
+ 
   addTask() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    const dialogRef = this.dialogRef.open(TaskEditComponent, {
+      data: {
+        index: null
+      }
+    });
   }
-
 }
