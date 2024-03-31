@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PopUpComponent } from './shared/pop-up/pop-up.component';
+
 
 @Component({
   selector: 'app-root',
