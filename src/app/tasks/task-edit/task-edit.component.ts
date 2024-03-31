@@ -18,6 +18,11 @@ export class TaskEditComponent implements OnInit {
   task: Task;
   taskForm: FormGroup;
   editMode = false;
+  categories = [
+    {value: 'Education', viewValue: 'Education'},
+    {value: 'Communication', viewValue: 'Communication'},
+    {value: 'Creative', viewValue: 'Creative'}
+  ];
   constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService
     , public dialogRef: MatDialogRef<TaskEditComponent>, @Inject(MAT_DIALOG_DATA) public data) {
     this.index = data.index;
@@ -43,11 +48,26 @@ export class TaskEditComponent implements OnInit {
       'title': new FormControl(null, Validators.required),
       'description': new FormControl(null, Validators.required),
       'category': new FormControl(null, Validators.required),
-      'dueTime': new FormControl(null, Validators.required),
-      'dueDate': new FormControl(null, Validators.required),
+      'dueTime': new FormControl(null, [Validators.required, this.validateDueTime]),
+      'dueDate': new FormControl(null, [Validators.required, this.validateDueDate]),
     });
   }
-
+   validateDueDate(control: FormControl) {
+    const dueDate = new Date(control.value);
+    const currentDate = new Date();
+  
+    if (dueDate < currentDate) {
+      return { pastDueDate: true };
+    }
+    return null;
+  }
+   validateDueTime(control: FormControl) {
+    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/; 
+    if (!regex.test(control.value)) {
+      return { invalidDueTime: true };
+    }
+    return null;
+  }
   setValue() {
     var dateTime = this.task.dueDate.split("T");
     var time = dateTime[1].split(":");

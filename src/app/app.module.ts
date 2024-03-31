@@ -17,7 +17,8 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthConfig, OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
-
+import { FilterPipe } from './filter.pipe';
+import { HeaderComponent } from './header/header.component';
 export const authCodeFlowConfig: AuthConfig = {
   issuer: 'http://localhost:8081/realms/TO-DO-APP',
   tokenEndpoint: 'http://localhost:8081/realms/TO-DO-APP/protocol/openid-connect/token',
@@ -38,11 +39,12 @@ export function initializeOAuth(oauthService: OAuthService): () => Promise<void>
 @NgModule({
   declarations: [
     AppComponent,
-
     TasksComponent,
     TaskListComponent,
     TaskItemComponent,
-    TaskEditComponent
+    TaskEditComponent,
+    FilterPipe,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

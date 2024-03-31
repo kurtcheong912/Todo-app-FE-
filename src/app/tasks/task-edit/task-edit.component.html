@@ -2,7 +2,8 @@
     <form class="form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <p class="title" *ngIf="editMode">Edit Task</p>
         <p class="title" *ngIf="!editMode">Add Task</p>
-        <p class="message">Add task for your todo app. </p>
+        <p class="message" *ngIf="editMode">Edit task for your todo app. </p>
+        <p class="message" *ngIf="!editMode">Add task for your todo app. </p>
         <label>
             <input class="input" type="title" placeholder="" formControlName="title">
             <span>Title</span>
@@ -13,13 +14,17 @@
         </label>
 
         <label>
-            <input class="input" type="Description" placeholder="" formControlName="category">
-            <span>Category</span>
+            <mat-form-field>
+                <mat-select placeholder="Category" formControlName="category">
+                  <mat-option *ngFor="let category of categories" [value]="category.value"  >
+                    {{ category.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
         </label>
         <label>
-            <div class="ngx-timepicker-field-example">
-                <ngx-timepicker-field [format]="24" formControlName="dueTime"></ngx-timepicker-field>
-            </div>
+            <input class="input" type="dueTime" placeholder="" formControlName="dueTime">
+            <span>Due Time</span> 
         </label>
         <label>
             <mat-form-field class="example-form-field">
@@ -36,7 +41,7 @@
             </mat-form-field>
         </label>
         <mat-dialog-actions align="end">
-            <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+            <button mat-button (click)="onNoClick()" type="button" cdkFocusInitial>Cancel</button>
             <button mat-button [mat-dialog-close]="true" type="submit" [disabled]="!taskForm.valid">Ok</button>
         </mat-dialog-actions>
     </form>

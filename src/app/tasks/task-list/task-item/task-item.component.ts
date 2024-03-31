@@ -32,6 +32,8 @@ export class TaskItemComponent {
     });
   }
   onEditTask(index: number) {
+    console.log(index);
+    
     const dialogRef = this.dialogRef.open(TaskEditComponent, {
       data: {
         index: index
