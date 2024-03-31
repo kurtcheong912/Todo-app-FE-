@@ -1,14 +1,14 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { TasksComponent } from "./tasks/tasks.component";
+
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/task', pathMatch: 'full' },
-
-    {
-        path: 'task', component: TasksComponent
-    },
+    { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+    { path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule) }
 ];
+
+export default appRoutes;
+
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
