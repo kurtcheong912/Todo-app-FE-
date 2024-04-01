@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Task } from "../tasks/task.model";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment.development";
 
-const LOCALHOST: string = 'http://localhost:8080';
+const LOCALHOST: string =  'http://localhost:8080';
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
 
