@@ -1,11 +1,14 @@
 import { RouterModule, Routes } from "@angular/router";
-import { FeatureTestComponent } from "./feature-test/feature-test.component";
 import { NgModule } from "@angular/core";
 
+
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/test', pathMatch: 'full' },
-    { path: 'test', component: FeatureTestComponent },
+    { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+    { path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule) }
 ];
+
+export default appRoutes;
+
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],

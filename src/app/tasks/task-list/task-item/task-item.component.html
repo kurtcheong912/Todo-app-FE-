@@ -1,0 +1,23 @@
+<mat-card class="list-group-item clearfix" style="cursor: pointer; margin-bottom: 0.5%;">
+
+    <div (click)="onEditTask(index)"> <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>Task title:{{ task.title }}</mat-card-title>   
+                <mat-card-subtitle>Category: {{ task.category }}</mat-card-subtitle>
+                <mat-card-subtitle>Description: {{ task.description }}</mat-card-subtitle>
+             
+                <br>
+                <mat-card-subtitle><b>Due at:</b></mat-card-subtitle>
+                <mat-card-subtitle>Date: {{ task.dueDate| date: 'dd/MM/YYYY' }} </mat-card-subtitle>
+                <mat-card-subtitle> Time: {{ task.dueDate| date: 'HH:mm' }}
+                </mat-card-subtitle>
+
+            </mat-card-title-group>
+        </mat-card-header>
+    </div>
+
+    <mat-card-actions align="end">
+        <button mat-button type="button" (click)="onEditTask(index)">Edit</button>
+        <button mat-button type="button" (click)="openDeleteDialog()">Delete</button>
+    </mat-card-actions>
+</mat-card>

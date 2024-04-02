@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-xs-7">
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." [(ngModel)]="filerTitle">
+            <button style="height:39px;">
+            <mat-icon>search</mat-icon></button>
+        </div>
+    </div>
+    <div class="col-xs-5" align="end">
+        <button mat-raised-button color="primary"(click)="addTask()">Add task</button>
+    </div>
+</div>
+<hr>
+<app-task-item *ngFor="let task of tasks | filter: filerTitle: 'title'; index as i;" [task]="task"
+    [index]="task.originalIndex"></app-task-item>
