@@ -2,12 +2,13 @@
 
     <div (click)="onEditTask(index)"> <mat-card-header>
             <mat-card-title-group>
-                <mat-card-title>Task title:{{ task.title }}</mat-card-title>   
+            
+                <mat-card-title><mat-icon style="color: red;" *ngIf="isDue">priority_high</mat-icon>Task title:{{ task.title }} </mat-card-title>   
                 <mat-card-subtitle>Category: {{ task.category }}</mat-card-subtitle>
                 <mat-card-subtitle>Description: {{ task.description }}</mat-card-subtitle>
              
                 <br>
-                <mat-card-subtitle><b>Due at:</b></mat-card-subtitle>
+                <mat-card-subtitle><mat-icon style="margin-bottom: -5%;">av_timer</mat-icon><b>Due at:</b></mat-card-subtitle>
                 <mat-card-subtitle>Date: {{ task.dueDate| date: 'dd/MM/YYYY' }} </mat-card-subtitle>
                 <mat-card-subtitle> Time: {{ task.dueDate| date: 'HH:mm' }}
                 </mat-card-subtitle>

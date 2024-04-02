@@ -10,27 +10,25 @@ export class AuthGuard implements CanActivate {
 
     constructor(
         private oauthService: OAuthService,
-        private jwthelper: JwtHelperService
+        private jwthelper: JwtHelperService,   
+         private router: Router
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
-     
         const token = this.oauthService.getAccessToken();
         const required = route.data.requiredRole;
-    console.log(token);
-    
-      
         if (token) {
-            const decodedTokeen = this.jwthelper.decodeToken(token);   
-  
-            if (decodedTokeen.realm_access.roles.includes(required+'')) {
+            const decodedTokeen = this.jwthelper.decodeToken(token);
+
+            if (decodedTokeen.realm_access.roles.includes(required + '')) {
                 return true;
-            }else{
-              return false; 
+            } else {
+                this.router.navigate(['/unauthorized']);
+                return false;
             }
-       
+
         } else {
-      
+
             this.oauthService.initLoginFlow();
             return false;
         }

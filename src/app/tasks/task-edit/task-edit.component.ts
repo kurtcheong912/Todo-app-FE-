@@ -46,23 +46,75 @@ export class TaskEditComponent implements OnInit {
       'description': new FormControl(null, Validators.required),
       'category': new FormControl(null, Validators.required),
       'dueTime': new FormControl(null, [Validators.required, this.validateDueTime]),
-      'dueDate': new FormControl(null, [Validators.required, this.validateDueDate]),
+      'dueDate': new FormControl(null, [Validators.required, this.validateDueDateTime]),
     });
   }
-  validateDueDate(control: FormControl) {
-    const dueDate = new Date(control.value);
-    const currentDate = new Date();
+  // validateDueDate(control: FormControl) {
+  //   const dueDate = new Date(control.value);
+  //   const currentDate = new Date();
 
-    if (dueDate < currentDate) {
-      return { pastDueDate: true };
+  //   if (dueDate < currentDate) {
+  //     return { pastDueDate: true };
+  //   }
+  //   return null;
+  // }
+  validateDueDateTime(control: FormControl) {
+    const dueDateTime = new Date(control.parent?.get('dueDate').value);
+    const dueTime = control.parent?.get('dueTime').value;
+  
+    // Ensure due date and time are provided
+    if (!dueDateTime || !dueTime) {
+      return null;
     }
+  
+    // Convert due time to hours and minutes
+    const [hours, minutes] = dueTime.split(':').map(Number);
+    dueDateTime.setHours(hours, minutes, 0, 0);
+  
+    const currentDateTime = new Date();
+  
+    // Compare due date with current date
+    if (dueDateTime.getTime() < currentDateTime.getTime()) {
+      return { pastDueDateTime: true };
+    }
+  
     return null;
   }
+  
+  validateDueTimeDate(control: FormControl) {
+    const dueDateTime = new Date(control.parent?.get('dueDate').value);
+    const dueTime = control.parent?.get('dueTime').value;
+  
+    // Ensure due date and time are provided
+    if (!dueTime) {
+      return null;
+    }else if(!!dueTime&& !!dueDateTime){
+
+      const [hours, minutes] = dueTime.split(':').map(Number);
+      dueDateTime.setHours(hours, minutes, 0, 0);
+    
+      const currentDateTime = new Date();
+    
+      // Compare due date with current date
+      if (dueDateTime.getTime() < currentDateTime.getTime()) {
+        return { pastDueDateTime: true };
+      }
+    
+    }else{
+ 
+      return true;
+    }
+  
+   
+    return null;
+  }
+
   validateDueTime(control: FormControl) {
     const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
     if (!regex.test(control.value)) {
       return { invalidDueTime: true };
     }
+    
     return null;
   }
   setValue() {

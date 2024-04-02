@@ -18,10 +18,12 @@ import { TasksModule } from './tasks/tasks.module';
 import { initializeOAuth } from './auth/oauth-config';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,
