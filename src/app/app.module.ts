@@ -16,7 +16,8 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { HeaderComponent } from './header/header.component';
 import { TasksModule } from './tasks/tasks.module';
 import { initializeOAuth } from './auth/oauth-config';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,13 @@ import { initializeOAuth } from './auth/oauth-config';
     ReactiveFormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
-    TasksModule
+    TasksModule,
+    RouterModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:()=>localStorage.getItem('access_token')
+      }
+    })
   ],
   providers: [
     provideAnimationsAsync(), provideNativeDateAdapter(),

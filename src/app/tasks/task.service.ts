@@ -17,8 +17,7 @@ export class TaskService {
 
     constructor(private dataStorageService: DataStorageService) { }
     setTasks() {
-        this.dataStorageService.fetchTasks().subscribe((tasks: Task[]) => {
-          
+        this.dataStorageService.fetchTasks().subscribe((tasks: Task[]) => {       
             this.tasks = tasks;
             this.tasksChanged.next(this.tasks.slice());
         })
@@ -41,7 +40,7 @@ export class TaskService {
 
     updateTask(index: number, task: Task) {
         task.id = this.tasks[index].id;
-        this.dataStorageService.putTask(task).subscribe((myTask: Task) => {
+        this.dataStorageService.editTask(task).subscribe((myTask: Task) => {
             this.tasks[index] = myTask;
             this.tasksChanged.next(this.tasks.slice());
         })

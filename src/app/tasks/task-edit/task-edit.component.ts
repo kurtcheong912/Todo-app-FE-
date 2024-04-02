@@ -6,6 +6,7 @@ import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CATEGORIES } from '../categories';
 
 @Component({
   selector: 'app-task-edit',
@@ -18,11 +19,7 @@ export class TaskEditComponent implements OnInit {
   task: Task;
   taskForm: FormGroup;
   editMode = false;
-  categories = [
-    {value: 'Education', viewValue: 'Education'},
-    {value: 'Communication', viewValue: 'Communication'},
-    {value: 'Creative', viewValue: 'Creative'}
-  ];
+  categories = CATEGORIES;
   constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService
     , public dialogRef: MatDialogRef<TaskEditComponent>, @Inject(MAT_DIALOG_DATA) public data) {
     this.index = data.index;
@@ -52,17 +49,17 @@ export class TaskEditComponent implements OnInit {
       'dueDate': new FormControl(null, [Validators.required, this.validateDueDate]),
     });
   }
-   validateDueDate(control: FormControl) {
+  validateDueDate(control: FormControl) {
     const dueDate = new Date(control.value);
     const currentDate = new Date();
-  
+
     if (dueDate < currentDate) {
       return { pastDueDate: true };
     }
     return null;
   }
-   validateDueTime(control: FormControl) {
-    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/; 
+  validateDueTime(control: FormControl) {
+    const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
     if (!regex.test(control.value)) {
       return { invalidDueTime: true };
     }

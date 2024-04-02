@@ -11,7 +11,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -44,7 +43,6 @@ import { MatIconModule } from '@angular/material/icon';
         MatOptionModule,
         MatToolbarModule,
         MatDatepickerModule,
-       
         MatIconModule
       ],
     declarations: [

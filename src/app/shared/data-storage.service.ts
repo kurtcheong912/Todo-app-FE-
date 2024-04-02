@@ -3,7 +3,7 @@ import { Task } from "../tasks/task.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment.development";
 
-const LOCALHOST: string =  'http://localhost:8080';
+const LOCALHOST: string =  environment.Local_host;
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
 
@@ -18,7 +18,7 @@ export class DataStorageService {
         return this.http.post<Task>(LOCALHOST + '/task', task);
     }
 
-    putTask(task: Task) {
+    editTask(task: Task) {
         return this.http.put(LOCALHOST + '/task/' + task.id, task);
     }
 

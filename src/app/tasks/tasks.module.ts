@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "../shared/material.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { FilterPipe } from "../filter.pipe";
-import { Router, RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router"; // Add these imports
 import { TasksRoutingModule } from "./tasks-routing.module";
 
 @NgModule({
@@ -24,6 +24,7 @@ import { TasksRoutingModule } from "./tasks-routing.module";
         MaterialModule,
         ReactiveFormsModule,
         MatDialogModule,
+        RouterModule, // Add RouterModule here
         TasksRoutingModule
     ],exports:[
         TasksComponent,
@@ -32,4 +33,4 @@ import { TasksRoutingModule } from "./tasks-routing.module";
         TaskEditComponent,
     ]
 })
-export class TasksModule{}
+export class TasksModule {}

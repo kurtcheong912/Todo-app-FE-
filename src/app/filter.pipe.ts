@@ -6,17 +6,20 @@ import { Task } from './tasks/task.model';
 })
 export class FilterPipe implements PipeTransform {
   transform(value: Task[], filterString: string, propName: string): Task[] {
-    if (!value || !value.length || !filterString.trim()||filterString==='') {
-      return value
-      .map((task, index) => ({ ...task, originalIndex: index })) 
-      .filter(task => {
-        const propValue = task[propName];
-        return propValue 
-      });
+    if (!value || !value.length) {
+      return null;
     }
-    
+    if (!filterString.trim() || filterString === '') {
+      return value
+        .map((task, index) => ({ ...task, originalIndex: index }))
+        .filter(task => {
+          const propValue = task[propName];
+          return propValue
+        });
+    }
+
     return value
-      .map((task, index) => ({ ...task, originalIndex: index })) 
+      .map((task, index) => ({ ...task, originalIndex: index }))
       .filter(task => {
         const propValue = task[propName];
         return propValue && propValue.toString().toLowerCase().includes(filterString.toLowerCase());
